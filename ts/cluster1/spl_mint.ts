@@ -1,6 +1,6 @@
 import { Keypair, PublicKey, Connection, Commitment } from "@solana/web3.js";
 import { getOrCreateAssociatedTokenAccount, mintTo } from "@solana/spl-token";
-import wallet from "/Users/szymonlyzwinski/Documents/Web3/Solana/solana-starter/wallet.json";
+import wallet from "/Users/szymonlyzwinski/Desktop/wallet.json";
 
 // Import our keypair from the wallet file
 const keypair = Keypair.fromSecretKey(new Uint8Array(wallet));
@@ -12,7 +12,7 @@ const connection = new Connection("https://api.devnet.solana.com", commitment);
 const token_decimals = 1_000_000n;
 
 // Mint address
-const mint = new PublicKey("8cmWwkurtFas6D5ySs594ZYajRTZYUrrfSW7fXtEaBzR");
+const mint = new PublicKey("74HciTQ34GtbKkKa16BuA2kEaNmfV8FV7yY5ea8q7b2v");
 
 (async () => {
   try {
@@ -31,7 +31,7 @@ const mint = new PublicKey("8cmWwkurtFas6D5ySs594ZYajRTZYUrrfSW7fXtEaBzR");
       mint,
       ata.address,
       keypair,
-      1000000
+      token_decimals
     );
     console.log(`Your mint txid: ${mintTx}`);
   } catch (error) {

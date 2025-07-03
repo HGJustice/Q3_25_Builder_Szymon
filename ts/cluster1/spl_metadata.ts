@@ -1,4 +1,4 @@
-import wallet from "/Users/szymonlyzwinski/Documents/Web3/Solana/solana-starter/wallet.json";
+import wallet from "/Users/szymonlyzwinski/Desktop/wallet.json";
 import { createUmi } from "@metaplex-foundation/umi-bundle-defaults";
 import {
   createMetadataAccountV3,
@@ -14,7 +14,7 @@ import {
 import { bs58 } from "@coral-xyz/anchor/dist/cjs/utils/bytes";
 
 // Define our Mint address
-const mint = publicKey("8cmWwkurtFas6D5ySs594ZYajRTZYUrrfSW7fXtEaBzR");
+const mint = publicKey("74HciTQ34GtbKkKa16BuA2kEaNmfV8FV7yY5ea8q7b2v");
 
 // Create a UMI connection
 const umi = createUmi("https://api.devnet.solana.com");
@@ -30,18 +30,19 @@ umi.use(signerIdentity(createSignerFromKeypair(umi, keypair)));
       mintAuthority: signer,
     };
     let data: DataV2Args = {
-      name: "T-Eazy",
-      symbol: "TZC",
+      name: "PussyBoi",
+      symbol: "Puss",
       uri: "https://devnet.irys.xyz/E2Sgc8ytxbwoEcN86M84xTCEETvHdZRFpr7c8s8C1v8p",
       sellerFeeBasisPoints: 1,
-      creators: null,
-      collection: null,
-      uses: null,
+      creators: null, //array of creator objects which contains userWallet and % of roylaties
+      collection: null, //link this token to a parent collection
+      uses: null, //how many times a nft can be used, null means unlimited
     };
+
     let args: CreateMetadataAccountV3InstructionArgs = {
       data: data,
       isMutable: true,
-      collectionDetails: null,
+      collectionDetails: null, // is this piece the parent to a collection
     };
     let tx = createMetadataAccountV3(umi, {
       ...accounts,

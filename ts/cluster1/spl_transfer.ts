@@ -5,7 +5,7 @@ import {
   LAMPORTS_PER_SOL,
   PublicKey,
 } from "@solana/web3.js";
-import wallet from "/Users/szymonlyzwinski/Documents/Web3/Solana/solana-starter/wallet.json";
+import wallet from "/Users/szymonlyzwinski/Desktop/wallet.json";
 import { getOrCreateAssociatedTokenAccount, transfer } from "@solana/spl-token";
 
 // We're going to import our keypair from the wallet file
