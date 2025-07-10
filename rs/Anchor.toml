@@ -6,6 +6,7 @@ resolution = true
 skip-lint = false
 
 [programs.localnet]
+escrow = "Fgs3MEq2ZyTk6n3C7wTMD68XnzjsjLw3iNz2Hso1Pkvk"
 rs = "8ejRP6zE7LEpVGQvaFPp6Jprrm5aZegCYhH48AhQmwv"
 vault = "CtdnTi7kwhJzKGZCsH4apKZeVnMGrWNJxsGxoa2wjoVR"
 

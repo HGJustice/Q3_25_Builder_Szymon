@@ -1,1 +1,3 @@
-Turnbi3 Q3 Builders Cohort, Szymon's Repo ;)
+# About
+
+Solana Turnbi3 Q3 Builders Cohort, Szymon's Repo ;)
