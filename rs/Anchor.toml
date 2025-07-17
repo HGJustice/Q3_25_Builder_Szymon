@@ -6,7 +6,10 @@ resolution = true
 skip-lint = false
 
 [programs.localnet]
+amm = "5A2mDzpkVnnLajLvX5zRQ6CFdJPY1Ugff7CLWGjSE54v"
 escrow = "Fgs3MEq2ZyTk6n3C7wTMD68XnzjsjLw3iNz2Hso1Pkvk"
+nft-staking = "Hydpbhk4Hq5rtaGZ7wGfXeuqwdo5h3Y7AXotywY3SRAp"
+nft-staking2 = "5wbeXZK9s7wnhSfHZLVqwhea2e3gn2gGzJX9APwCvE7"
 rs = "8ejRP6zE7LEpVGQvaFPp6Jprrm5aZegCYhH48AhQmwv"
 vault = "CtdnTi7kwhJzKGZCsH4apKZeVnMGrWNJxsGxoa2wjoVR"
 

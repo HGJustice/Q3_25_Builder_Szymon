@@ -1,7 +1,7 @@
 use anchor_lang::prelude::*;
 use anchor_spl::{
     associated_token::AssociatedToken,  
-    token_interface::{self, close_account, transfer_checked, CloseAccount, Mint, TokenAccount, TokenInterface, TransferChecked}
+    token_interface::{close_account, transfer_checked, CloseAccount, Mint, TokenAccount, TokenInterface, TransferChecked}
 };
 
 use crate::state::Escrow;
@@ -95,7 +95,7 @@ impl<'info> Take<'info> {
             authority: self.escrow.to_account_info(),
         };
         let ctx = CpiContext::new_with_signer(self.token_program.to_account_info(), close_account, &signer_seeds);
-        token_interface::close_account(ctx)?;
+        // token_interface::close_account(ctx)?;
         Ok(())
     }
 }
