@@ -6,7 +6,7 @@ use anchor_spl::
         ThawDelegatedAccountCpi,
         ThawDelegatedAccountCpiAccounts,
     }, MasterEditionAccount, Metadata },
-    token::{approve, revoke, Approve, Mint, Revoke, Token, TokenAccount}, token_2022::Revoke};
+    token::{ revoke, Mint, Revoke, Token, TokenAccount}, };
 
 use crate::state::{StakeConfig, StakedAccount, UserAccount};
 

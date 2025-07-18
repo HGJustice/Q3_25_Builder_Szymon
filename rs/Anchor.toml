@@ -7,7 +7,9 @@ skip-lint = false
 
 [programs.localnet]
 amm = "5A2mDzpkVnnLajLvX5zRQ6CFdJPY1Ugff7CLWGjSE54v"
+amm2 = "5aEzWFQr8DK2e2gi632aHA56aYVEeJaccYsJj2e3m8y6"
 escrow = "Fgs3MEq2ZyTk6n3C7wTMD68XnzjsjLw3iNz2Hso1Pkvk"
+marketplace = "HXVCPZbe7AxYjRNfptEUp8ZhTbhmWnvbjr3ps5PPkwDF"
 nft-staking = "Hydpbhk4Hq5rtaGZ7wGfXeuqwdo5h3Y7AXotywY3SRAp"
 nft-staking2 = "5wbeXZK9s7wnhSfHZLVqwhea2e3gn2gGzJX9APwCvE7"
 rs = "8ejRP6zE7LEpVGQvaFPp6Jprrm5aZegCYhH48AhQmwv"
