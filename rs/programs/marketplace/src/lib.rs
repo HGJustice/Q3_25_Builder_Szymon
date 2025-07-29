@@ -1,4 +1,8 @@
+#![allow(unexpected_cfgs, deprecated)]
 use anchor_lang::prelude::*;
+
+mod state;
+mod context;
 
 declare_id!("HXVCPZbe7AxYjRNfptEUp8ZhTbhmWnvbjr3ps5PPkwDF");
 
