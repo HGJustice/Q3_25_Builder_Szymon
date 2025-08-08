@@ -6,7 +6,8 @@ resolution = true
 skip-lint = false
 
 [programs.localnet]
-capstone = "GUiKx4yvQ3uoSo74b4QGdgLAnr6nsVrLLWXVwjBd8wwd"
+capstone = "4uZgCu1eRLSisHQE5sdHeXhCcTUCNQQxYxfcfT813Rf5"
+meal_prep_marketplace = "7oCizVtCCp4VuFjWf4wbNzxpPckLZTSABP9YyBuD8oqa"
 
 [registry]
 url = "https://api.apr.dev"
