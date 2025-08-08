@@ -2,7 +2,7 @@ import * as anchor from "@coral-xyz/anchor";
 import { Program } from "@coral-xyz/anchor";
 import { MealPrepMarketplace } from "../target/types/meal_prep_marketplace";
 import { airdropSol } from "./utils";
-import { expect } from "chai";
+import { assert } from "chai";
 
 describe("meal_prep_marketplace", () => {
   anchor.setProvider(anchor.AnchorProvider.env());
@@ -32,7 +32,7 @@ describe("meal_prep_marketplace", () => {
 
     try {
       await program.methods
-        .initialize(platformFee)
+        .initializeMarketplace(platformFee)
         .accountsPartial({
           admin: adminKey.publicKey,
           marketplace: marketplacePda,
@@ -45,7 +45,11 @@ describe("meal_prep_marketplace", () => {
       const marketplaceAccount = await program.account.marketplace.fetch(
         marketplacePda
       );
-      console.log("Marketplace account:", marketplaceAccount);
+      assert.equal(marketplaceAccount.fees.toString(), platformFee.toString());
+      assert.equal(
+        marketplaceAccount.admin.toString(),
+        adminKey.publicKey.toString()
+      );
     } catch (error) {
       console.error("Error:", error);
     }
