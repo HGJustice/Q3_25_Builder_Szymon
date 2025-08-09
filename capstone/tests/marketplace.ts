@@ -18,17 +18,15 @@ describe("meal_prep_marketplace", () => {
 
     await airdropSol(connection, adminKey.publicKey);
 
-    const [marketplacePda, marketplaceBump] =
-      anchor.web3.PublicKey.findProgramAddressSync(
-        [Buffer.from("marketplace")],
-        program.programId
-      );
+    const [marketplacePda] = anchor.web3.PublicKey.findProgramAddressSync(
+      [Buffer.from("marketplace")],
+      program.programId
+    );
 
-    const [treasuryPda, treasuryBump] =
-      anchor.web3.PublicKey.findProgramAddressSync(
-        [Buffer.from("treasury"), marketplacePda.toBuffer()],
-        program.programId
-      );
+    const [treasuryPda] = anchor.web3.PublicKey.findProgramAddressSync(
+      [Buffer.from("treasury"), marketplacePda.toBuffer()],
+      program.programId
+    );
 
     try {
       await program.methods

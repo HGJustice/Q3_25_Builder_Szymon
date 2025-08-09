@@ -12,12 +12,6 @@ describe("meal_prep_marketplace", () => {
   const program = anchor.workspace
     .meal_prep_marketplace as Program<MealPrepMarketplace>;
 
-  const [marketplacePda, marketplaceBump] =
-    anchor.web3.PublicKey.findProgramAddressSync(
-      [Buffer.from("marketplace")],
-      program.programId
-    );
-
   it("User initialization", async () => {
     const userKey = anchor.web3.Keypair.generate();
     await airdropSol(connection, userKey.publicKey);
@@ -42,6 +36,7 @@ describe("meal_prep_marketplace", () => {
     const userAccount = await program.account.userManagement.fetch(userPda);
     assert.equal(userAccount.username, "Simon");
     assert.equal(userAccount.location, "London");
+    assert.equal(userAccount.listingsCount, 0);
     assert.deepEqual(userAccount.userType, { cook: {} });
   });
 });

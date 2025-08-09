@@ -24,7 +24,7 @@ pub struct Initialize<'info> {
 }
 
 impl<'info> Initialize<'info> {
-    pub fn init(&mut self, fees: u16, bumps: &InitializeBumps) -> Result<()> {
+    pub fn init_marketplace(&mut self, fees: u16, bumps: &InitializeBumps) -> Result<()> {
         self.marketplace.set_inner(Marketplace { 
             admin: self.admin.key(), 
             total_listings: 0, 
