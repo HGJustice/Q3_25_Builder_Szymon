@@ -28,6 +28,7 @@ impl<'info> Initialize<'info> {
         self.marketplace.set_inner(Marketplace { 
             admin: self.admin.key(), 
             total_listings: 0, 
+            total_orders: 0,
             treasury_bump: bumps.treasury, 
             fees,
             bump: bumps.marketplace 

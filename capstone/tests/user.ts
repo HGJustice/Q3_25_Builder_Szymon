@@ -4,7 +4,7 @@ import { MealPrepMarketplace } from "../target/types/meal_prep_marketplace";
 import { airdropSol } from "./utils";
 import { assert } from "chai";
 
-describe("meal_prep_marketplace", () => {
+describe("user testing", () => {
   anchor.setProvider(anchor.AnchorProvider.env());
   const provider = anchor.getProvider();
   const connection = provider.connection;
@@ -33,10 +33,10 @@ describe("meal_prep_marketplace", () => {
       .signers([userKey])
       .rpc();
 
-    const userAccount = await program.account.userManagement.fetch(userPda);
+    const userAccount = await program.account.user.fetch(userPda);
     assert.equal(userAccount.username, "Simon");
     assert.equal(userAccount.location, "London");
-    assert.equal(userAccount.listingsCount, 0);
+    assert.equal(userAccount.listingsCount.toNumber(), 0);
     assert.deepEqual(userAccount.userType, { cook: {} });
   });
 });

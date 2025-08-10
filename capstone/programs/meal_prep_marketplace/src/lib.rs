@@ -2,11 +2,14 @@
 use anchor_lang::prelude::*;
 
 pub mod context;
-use context::*;
 pub mod state;
 pub mod enums;
-use enums::UserType;
 pub mod errors;
+
+use enums::*;
+use context::*;
+
+
 declare_id!("7oCizVtCCp4VuFjWf4wbNzxpPckLZTSABP9YyBuD8oqa");
 
 #[program]
@@ -24,8 +27,11 @@ pub mod meal_prep_marketplace {
     }
 
     pub fn cook_creates_listing(ctx: Context<InitializeListing>, meal_name: String, description: String, price_per_meal: u32, meals_available: u32, delivery_available: bool, delivery_fee: Option<u32>) -> Result<()> {
-
-    
+        ctx.accounts.init_listing(meal_name, description, price_per_meal, meals_available, delivery_available, delivery_fee, &ctx.bumps)?;
         Ok(())
     }
+
+    // pub fn close_listing() -> Result<()> {
+    //     Ok(())
+    // }
 }

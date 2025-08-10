@@ -10,6 +10,6 @@ pub struct User {
     #[max_len(50)]
     pub location: String,
     pub user_type: UserType,
-    pub listings_count: u32,
+    pub listings_count: u64, // option 32
     pub bump: u8,
 }

@@ -4,7 +4,7 @@ import { MealPrepMarketplace } from "../target/types/meal_prep_marketplace";
 import { airdropSol } from "./utils";
 import { assert } from "chai";
 
-describe("meal_prep_marketplace", () => {
+describe("marketplace testing", () => {
   anchor.setProvider(anchor.AnchorProvider.env());
   const provider = anchor.getProvider();
   const connection = provider.connection;
