@@ -24,7 +24,7 @@ impl<'info> InitializeUser<'info> {
         username, 
         location, 
         user_type, 
-        listings_count: 0, // maybe option<32> if user is customer
+        listings_count: 1, // maybe option<32> if user is customer
         bump: bumps.user_account,
     });
     Ok(())

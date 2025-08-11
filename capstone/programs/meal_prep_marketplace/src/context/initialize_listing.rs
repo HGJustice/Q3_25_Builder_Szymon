@@ -49,6 +49,7 @@ impl<'info> InitializeListing<'info> {
 
         self.user_account.listings_count += 1;
         self.marketplace.total_listings += 1;
+       
         Ok(())
     }
 }

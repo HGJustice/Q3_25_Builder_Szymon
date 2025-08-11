@@ -36,7 +36,7 @@ describe("user testing", () => {
     const userAccount = await program.account.user.fetch(userPda);
     assert.equal(userAccount.username, "Simon");
     assert.equal(userAccount.location, "London");
-    assert.equal(userAccount.listingsCount.toNumber(), 0);
+    assert.equal(userAccount.listingsCount.toNumber(), 1);
     assert.deepEqual(userAccount.userType, { cook: {} });
   });
 });
