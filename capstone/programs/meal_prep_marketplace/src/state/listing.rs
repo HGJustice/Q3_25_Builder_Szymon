@@ -9,8 +9,8 @@ pub struct Listing {
     pub meal_name: String,
     #[max_len(50)]
     pub description: String,
-    pub price_per_meal: u32,
-    pub meals_available: u32,
+    pub price_per_meal: u64,
+    pub meals_available: u64,
     pub delivery_available: bool,
     pub delivery_fee: Option<u32>,
     pub bump: u8,

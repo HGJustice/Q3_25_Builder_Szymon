@@ -32,7 +32,7 @@ pub struct InitializeListing<'info> {
 }
 
 impl<'info> InitializeListing<'info> {
-    pub fn init_listing(&mut self, meal_name: String, description: String, price_per_meal: u32, meals_available: u32, delivery_available: bool, delivery_fee: Option<u32>, bumps: &InitializeListingBumps) -> Result<()> {
+    pub fn init_listing(&mut self, meal_name: String, description: String, price_per_meal: u64, meals_available: u64, delivery_available: bool, delivery_fee: Option<u32>, bumps: &InitializeListingBumps) -> Result<()> {
         require!(self.user_account.user_type == UserType::Cook, ErrorCode::OnlyCooksCanCreateListings);
 
         self.user_listing.set_inner(Listing { 

@@ -26,12 +26,18 @@ pub mod meal_prep_marketplace {
         Ok(())
     }
 
-    pub fn cook_creates_listing(ctx: Context<InitializeListing>, meal_name: String, description: String, price_per_meal: u32, meals_available: u32, delivery_available: bool, delivery_fee: Option<u32>) -> Result<()> {
+    pub fn cook_creates_listing(ctx: Context<InitializeListing>, meal_name: String, description: String, price_per_meal: u64, meals_available: u64, delivery_available: bool, delivery_fee: Option<u32>) -> Result<()> {
         ctx.accounts.init_listing(meal_name, description, price_per_meal, meals_available, delivery_available, delivery_fee, &ctx.bumps)?;
         Ok(())
     }
 
-    // pub fn close_listing() -> Result<()> {
-    //     Ok(())
-    // }
+    pub fn close_listing(ctx: Context<CloseListing>, listing_id: u64) -> Result<()> {
+        ctx.accounts.close_listing(listing_id)?;
+        Ok(())
+    }
+
+    pub fn create_order(ctx: Context<InitalizeOrder>, listing_id: u64, meal_quantity: u64, delivery_location: Option<String>, collection_location: Option<String>) -> Result<()> {
+        ctx.accounts.init_order(listing_id, meal_quantity, delivery_location, collection_location, &ctx.bumps)?;
+        Ok(())
+    }
 }
