@@ -7,9 +7,16 @@ pub enum UserType {
 }
 
 #[derive(AnchorSerialize, AnchorDeserialize, Clone, PartialEq, Eq, InitSpace)]
-pub enum OrderStatus {
+pub enum OrderStatusCook {
     Confirmed, 
     Ready, 
     Complete,
+    Cancelled
+}
+
+#[derive(AnchorSerialize, AnchorDeserialize, Clone, PartialEq, Eq, InitSpace)]
+pub enum OrderStatusCustomer {
+    Collected,
+    Waiting,
     Cancelled
 }

@@ -1,7 +1,7 @@
 use anchor_lang::{prelude::*, system_program::{transfer, Transfer}};
 
 use crate::state::{Listing, Marketplace, Order, User};
-use crate::enums::OrderStatus;
+use crate::enums::{OrderStatusCook, OrderStatusCustomer};
 
 #[derive(Accounts)]
 #[instruction(listing_id: u64)]
@@ -66,7 +66,8 @@ impl<'info> InitalizeOrder<'info> {
             meal_quantity, 
             delivery_location, 
             collection_location, 
-            order_status: OrderStatus::Confirmed,
+            cook_order_status: OrderStatusCook::Confirmed,
+            customer_order_status: OrderStatusCustomer::Waiting,
             bump: bumps.order, 
             vault_bump: bumps.vault
         });

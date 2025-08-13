@@ -40,4 +40,15 @@ pub mod meal_prep_marketplace {
         ctx.accounts.init_order(listing_id, meal_quantity, delivery_location, collection_location, &ctx.bumps)?;
         Ok(())
     }
+
+
+    pub fn cook_change_order_status(ctx: Context<UpdateOrderStatus>, listing_id: u64, new_order_status: OrderStatusCook) -> Result<()> {
+        ctx.accounts.cook_updates_order_status(listing_id, new_order_status)?;
+        Ok(())
+    }
+
+    pub fn customer_change_order_status(ctx: Context<UpdateOrderStatus>, listing_id: u64, new_order_status: OrderStatusCustomer) -> Result<()> {
+        ctx.accounts.customer_updates_order_status(listing_id, new_order_status)?;
+        Ok(())
+    }
 }

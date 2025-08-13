@@ -1,6 +1,6 @@
 use anchor_lang::prelude::*;
 
-use crate::enums::OrderStatus;
+use crate::enums::{OrderStatusCook, OrderStatusCustomer};
 
 #[account]
 #[derive(InitSpace)]
@@ -14,7 +14,8 @@ pub struct Order {
     pub delivery_location: Option<String>,
     #[max_len(50)]
     pub collection_location: Option<String>,
-    pub order_status: OrderStatus,
+    pub cook_order_status: OrderStatusCook,
+    pub customer_order_status: OrderStatusCustomer,
     pub bump: u8,
     pub vault_bump: u8,
 }
