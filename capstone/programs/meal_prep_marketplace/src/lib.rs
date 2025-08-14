@@ -36,7 +36,7 @@ pub mod meal_prep_marketplace {
         Ok(())
     }
 
-    pub fn create_order(ctx: Context<InitalizeOrder>, listing_id: u64, meal_quantity: u64, delivery_location: Option<String>, collection_location: Option<String>) -> Result<()> {
+    pub fn initialize_order(ctx: Context<InitalizeOrder>, listing_id: u64, meal_quantity: u64, delivery_location: Option<String>, collection_location: Option<String>) -> Result<()> {
         ctx.accounts.init_order(listing_id, meal_quantity, delivery_location, collection_location, &ctx.bumps)?;
         Ok(())
     }
@@ -49,6 +49,16 @@ pub mod meal_prep_marketplace {
 
     pub fn customer_change_order_status(ctx: Context<UpdateOrderStatus>, listing_id: u64, new_order_status: OrderStatusCustomer) -> Result<()> {
         ctx.accounts.customer_updates_order_status(listing_id, new_order_status)?;
+        Ok(())
+    }
+
+    pub fn cook_completes_order(ctx: Context<CloseOrder>, listing_id: u64) -> Result<()> {
+        ctx.accounts.close_order_with_fees(listing_id)?;
+        Ok(())
+    }
+
+    pub fn withdraw_fees(ctx: Context<WithdrawFees>, ) -> Result<()> {
+        ctx.accounts.withdraw_fees()?;
         Ok(())
     }
 }

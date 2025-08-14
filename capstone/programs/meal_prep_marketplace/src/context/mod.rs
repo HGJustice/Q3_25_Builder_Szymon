@@ -5,6 +5,7 @@ pub mod close_listing;
 pub mod initialize_order;
 pub mod update_order;
 pub mod close_order;
+pub mod withdraw_fees;
 
 pub use initialize_marketplace::*;
 pub use initialize_user::*;
@@ -13,3 +14,4 @@ pub use close_listing::*;
 pub use initialize_order::*;
 pub use update_order::*;
 pub use close_order::*;
+pub use withdraw_fees::*;

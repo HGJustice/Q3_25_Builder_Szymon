@@ -4,6 +4,8 @@ import { MealPrepMarketplace } from "../target/types/meal_prep_marketplace";
 import { airdropSol } from "./utils";
 import { assert, expect } from "chai";
 
+export const adminKey = anchor.web3.Keypair.generate();
+
 describe("listing testing", () => {
   anchor.setProvider(anchor.AnchorProvider.env());
   const provider = anchor.getProvider();
@@ -17,7 +19,6 @@ describe("listing testing", () => {
     program.programId
   );
   it("Listing initialization", async () => {
-    const adminKey = anchor.web3.Keypair.generate();
     const platformFee = 250;
     await airdropSol(connection, adminKey.publicKey);
 

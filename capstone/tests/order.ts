@@ -2,6 +2,7 @@ import * as anchor from "@coral-xyz/anchor";
 import { Program } from "@coral-xyz/anchor";
 import { MealPrepMarketplace } from "../target/types/meal_prep_marketplace";
 import { airdropSol } from "./utils";
+import { adminKey } from "./listing";
 import { assert, expect } from "chai";
 
 describe("order testing", () => {
@@ -12,7 +13,7 @@ describe("order testing", () => {
   const program = anchor.workspace
     .meal_prep_marketplace as Program<MealPrepMarketplace>;
 
-  it("creates an order and changing cooks and customers order status", async () => {
+  it("creates an order, changes cook/customers order status and completes order by closing order account and giving cook lamports", async () => {
     const cookKey = anchor.web3.Keypair.generate();
     await airdropSol(connection, cookKey.publicKey);
     const customerKey = anchor.web3.Keypair.generate();
@@ -99,7 +100,7 @@ describe("order testing", () => {
       .cookCreatesListing(
         "chips",
         "fresh chips",
-        new anchor.BN(1),
+        new anchor.BN(1000000),
         new anchor.BN(10),
         false,
         null
@@ -124,7 +125,7 @@ describe("order testing", () => {
     const beforeBalance = await connection.getBalance(customerKey.publicKey);
 
     await program.methods
-      .createOrder(new anchor.BN(1), new anchor.BN(5), null, "London")
+      .initializeOrder(new anchor.BN(1), new anchor.BN(5), null, "London")
       .accountsPartial({
         customer: customerKey.publicKey,
         cook: cookPDA,
@@ -150,7 +151,7 @@ describe("order testing", () => {
 
     await program.methods
       .cookChangeOrderStatus(new anchor.BN(1), {
-        ready: {},
+        complete: {},
       })
       .accountsPartial({
         user: cookKey.publicKey,
@@ -176,6 +177,55 @@ describe("order testing", () => {
 
     const orderAccountAfter = await program.account.order.fetch(orderPDA);
     assert(orderAccountAfter.cookOrderStatus, "ready");
-    assert(orderAccountAfter.customerOrderStatus, "collected");
+    assert(orderAccountAfter.customerOrderStatus, "complete");
+    const [treasuryPda] = anchor.web3.PublicKey.findProgramAddressSync(
+      [Buffer.from("treasury"), marketplacePda.toBuffer()],
+      program.programId
+    );
+
+    const treasuryBalanceBefore = await connection.getBalance(treasuryPda);
+    const cookBalanceBefore = await connection.getBalance(cookKey.publicKey);
+
+    await program.methods
+      .cookCompletesOrder(new anchor.BN(1))
+      .accountsPartial({
+        user: cookKey.publicKey,
+        cook: cookPDA,
+        userListing: listingPDA4,
+        order: orderPDA,
+        marketplace: marketplacePda,
+        vault: vaultPDA,
+        treasury: treasuryPda,
+        systemProgram: anchor.web3.SystemProgram.programId,
+      })
+      .signers([cookKey])
+      .rpc();
+
+    const marketplace3 = await program.account.marketplace.fetch(
+      marketplacePda
+    );
+
+    const treasuryBalanceAfter = await connection.getBalance(treasuryPda);
+    const cookBalanceAfter = await connection.getBalance(cookKey.publicKey);
+
+    expect(cookBalanceAfter).to.be.greaterThan(cookBalanceBefore);
+    expect(treasuryBalanceAfter).to.be.greaterThan(treasuryBalanceBefore);
+    assert.equal(marketplace3.totalOrders.toNumber(), 0);
+
+    const adminBalanceBefore = await connection.getBalance(adminKey.publicKey);
+
+    await program.methods
+      .withdrawFees()
+      .accountsPartial({
+        admin: adminKey.publicKey,
+        marketplace: marketplacePda,
+        treasury: treasuryPda,
+        systemProgram: anchor.web3.SystemProgram.programId,
+      })
+      .signers([adminKey])
+      .rpc();
+
+    const adminBalanceAfter = await connection.getBalance(adminKey.publicKey);
+    expect(adminBalanceAfter).to.be.greaterThan(adminBalanceBefore);
   });
 });
