@@ -6,7 +6,7 @@ import { assert, expect } from "chai";
 
 export const adminKey = anchor.web3.Keypair.generate();
 
-describe("listing testing", () => {
+describe("marketplace initialization && listing testing", () => {
   anchor.setProvider(anchor.AnchorProvider.env());
   const provider = anchor.getProvider();
   const connection = provider.connection;
@@ -18,7 +18,7 @@ describe("listing testing", () => {
     [Buffer.from("marketplace")],
     program.programId
   );
-  it("Listing initialization", async () => {
+  it("marketplace and listing initialization", async () => {
     const platformFee = 250;
     await airdropSol(connection, adminKey.publicKey);
 
