@@ -5,24 +5,31 @@ A Solana-based meal prep platform that directly connects busy customers with loc
 # How it works / Diagram
 
 **Market initialisation**
+
 Firstly the admin initializes the marketplace, by selecting the fee-rate. The main account for this account that is also being created is the treasury account which will hold the lamports fees collected from the complete orders. The marketplace also keeps track of the number of all active listings and orders.
 
 **User initialisation**
+
 When potential customers come to the dApp, we categorise them into two actors. Cook and Customer. When initializing a User account they specify their username, location and user type.
 
 **Order initialisation**
+
 Cooks then creates listing accounts, containing information like mealName, description, pricePerMeal, mealsAvailable, deliveryAvailable, deliveryFee.
 
 **Listing initialisation**
+
 Then the customers browse these listings, and find an appropriate one with the amount they wish to buy, they will initialize the order which takes listingID, and the amount for the portion. This will then create the Order account, send the appropriate lamports to the vault account where the funds will be held, and the cook is notified of the newly created order.
 
 **Change Order Status**
+
 This is the section where the cook alongside the customer will update their order statuses according to what's going on with the order. Once the customer sets his order status to Collected and the cook has his set on the Complete, then the cook will be able to withdraw funds from the vault.
 
 **Cook withdraws from vault && marketplace fees get sent to treasury**
+
 Once the order status for both customer and cook is on their confirmed states. Then the cook will be able to withdraw their payment for the meal prep. In the function before sending the cook their lamports, we first take away the marketplace fee %, from the vault's total lamport balance. Then sending the fees to the marketplace treasury, while the rest gets sent to the cook.
 
 **Admin withdraws fees**
+
 Once the admin of the marketplace sees that enough orders have been completed. They can withdraw the lamport fees collected to their wallet.
 
 ![Architecture Design](./architecture_design.jpg)
