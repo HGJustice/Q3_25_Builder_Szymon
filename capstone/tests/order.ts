@@ -31,7 +31,7 @@ describe("order testing", () => {
     program.programId
   );
 
-  it("creates an order", async () => {
+  it("order initialization", async () => {
     await airdropSol(connection, cookKey.publicKey);
     await airdropSol(connection, customerKey.publicKey);
 
@@ -254,7 +254,7 @@ describe("order testing", () => {
     assert(orderAccountAfter.cookOrderStatus, "ready");
     assert(orderAccountAfter.customerOrderStatus, "complete");
   });
-  it("completes order by closing order account and sending cook && market place tresury  lamports", async () => {
+  it("completes order by closing order account && sending cook, marketplace-treasury lamports", async () => {
     const cookAccount = await program.account.user.fetch(cookPDA);
 
     const listingsCountBuffer = Buffer.allocUnsafe(8);

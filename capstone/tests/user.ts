@@ -12,7 +12,7 @@ describe("users testing", () => {
   const program = anchor.workspace
     .meal_prep_marketplace as Program<MealPrepMarketplace>;
 
-  it("Cook initialization", async () => {
+  it("cook initialization", async () => {
     const cookKey = anchor.web3.Keypair.generate();
     await airdropSol(connection, cookKey.publicKey);
 

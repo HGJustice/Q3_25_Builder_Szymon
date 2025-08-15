@@ -6,7 +6,7 @@ import { assert, expect } from "chai";
 
 export const adminKey = anchor.web3.Keypair.generate();
 
-describe("marketplace initialization && listing testing", () => {
+describe("marketplace && listing testing", () => {
   anchor.setProvider(anchor.AnchorProvider.env());
   const provider = anchor.getProvider();
   const connection = provider.connection;
@@ -142,7 +142,7 @@ describe("marketplace initialization && listing testing", () => {
     assert.equal(listingAccount2.listingId.toNumber(), 2);
     assert.equal(listingAccount2.mealName, "pizza");
   });
-  it("Listing creating and delisting", async () => {
+  it("listing creation and delisting", async () => {
     let userKey = anchor.web3.Keypair.generate();
     await airdropSol(connection, userKey.publicKey);
 
