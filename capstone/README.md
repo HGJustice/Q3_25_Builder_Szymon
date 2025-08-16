@@ -6,7 +6,7 @@ A Solana-based meal prep platform that directly connects busy customers with loc
 
 ## How it works / Diagram
 
-### Marketplace initialisation
+#### Marketplace initialisation
 
 Firstly the admin initializes the marketplace, by selecting the fee-rate. The main account for this account that is also being created is the treasury account which will hold the lamports fees collected from the complete orders. The marketplace also keeps track of the number of all active listings and orders.
 
@@ -42,7 +42,9 @@ Overall there are 8 total tests that test 4 total accounts and their functionali
 
 1. In the user testing section, we are checking if the instantiation of the user accounts works correctly with the correct data passed like username, location and if the proper userType is assigned to them correctly like cook or customer.
 
-2. In the marketplace and listing section we checked if the instantiating of the marketplace account happend correctly and if the proper fees were placed. We also create a listing account using the cook account, to check if proper data was saved such as meal name, amount of meals, price per meal etc. We also test the delisting of the listing, where we close the account and test if the rent gets sent back to the cook.
+2. In the marketplace and listing section we checked if the instantiating of the marketplace account happend correctly and if the proper fees were placed. We also create a listing account using the cook account, to check if proper data was saved such as meal name, amount of meals, price per meal etc.
+
+- We also test the delisting of the listing, where we close the account and test if the rent gets sent back to the cook.
 
 - In the marketplace account, we also test the withdraw fees function that can only be called by the admin, to withdraw any  
   lamports thats been sent through completed orders. We first create and close and order sucessfully ensure that lamports was sent to both admin and cook, then call the withdraw_fees function with the admin.
